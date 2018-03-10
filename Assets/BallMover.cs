@@ -31,12 +31,17 @@ public class BallMover : MonoBehaviour
 
     private KeyCode left, right, up, down;
 
+    public bool canMove = false;
     public int playerNumber = 1;
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log("Hello");
+        float ypos = this.transform.position[1];
+        float height = this.transform.localScale[1];
+        canMove = ypos >= height/4.0f && ypos < 3.0f*height/4.0f;
+        if (!canMove) {
+            return;
+        }
         // this is for the X axis' movement (moving left and right)
         float x = 0.0f;
 
